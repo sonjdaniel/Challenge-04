@@ -2,13 +2,13 @@
 var startb = document.querySelector("#start");
 var timer = document.querySelector(".timer");
 var questionAsk = document.querySelector(".question");
+var answerButtons = document.querySelector(".answer_Button");
 var answerButton1 = document.querySelector(".answer1");
 var answerButton2 = document.querySelector(".answer2");
 var answerButton3 = document.querySelector(".answer3");
 var answerButton4 = document.querySelector(".answer4");
-var countdown = document.querySelector("countdown");
+var countdown = document.querySelector(".countdown");
 var instruction = document.querySelector(".instuction")
-var answerButtons = document.querySelector("#answerButton");
 var currentQuestion = 0
 var timeLeft = 60;
 
@@ -35,7 +35,8 @@ startb.addEventListener("click", function () {
     answerButton4.innerHTML = questions[currentQuestion].answers[3]
     instruction.style = "display: none";
     startb.style = "display: none";
-    answerButtons.style.display = "display:flex";
+    answerButtons.style = "display: flex";
+    answerButtons.style = "visibility: visible";
 
  
 });
