@@ -2,11 +2,11 @@
 var startb = document.querySelector("#start");
 var timer = document.querySelector(".timer");
 var questionAsk = document.querySelector(".question");
-var answerButtons = document.querySelector(".answer_Button");
-var answerButton1 = document.querySelector(".answer1");
-var answerButton2 = document.querySelector(".answer2");
-var answerButton3 = document.querySelector(".answer3");
-var answerButton4 = document.querySelector(".answer4");
+var answerButtons = document.querySelector("#answer_Button");
+var answerButton1 = document.querySelector("#answer1");
+var answerButton2 = document.querySelector("#answer2");
+var answerButton3 = document.querySelector("#answer3");
+var answerButton4 = document.querySelector("#answer4");
 var countdown = document.querySelector(".countdown");
 var instruction = document.querySelector(".instuction")
 var currentQuestion = 0
@@ -15,7 +15,7 @@ var timeLeft = 60;
 
 
 
-// Questions
+// Questions to ask?
 var questions = [
     {
         question: "Commonly used data types DO Not Include:",
@@ -59,4 +59,35 @@ function countDown() {
             clearInterval(interval);
         }
     }
-}
+};
+// user answer questions
+answerButtons.addEventListener("click", function (event) {
+
+    var userChoice = event.target;
+    console.log("Selection: " + userChoice.innerHTML);
+
+    var userAnswer = userChoice.innerHTML;
+
+    if (currentQuestion === 4) {
+        endTimer();
+        return scorePage();
+
+    } else if (userAnswer !== questions[currentQuestion].correctAnswer) {
+        timeLeft -= 10;
+        comment.textContent = "Wrong!";
+        answerButtons.append(comment);
+    } else {
+        comment.textContent = "Correct";
+        answerButtons.append(comment);
+    }
+
+    currentQuestion += 1;
+
+    question.textContent = questions[currentQuestion].question;
+    answerButton1.innerHTML = questions[currentQuestion].answers[0]
+    answerButton2.innerHTML = questions[currentQuestion].answers[1]
+    answerButton3.innerHTML = questions[currentQuestion].answers[2]
+    answerButton4.innerHTML = questions[currentQuestion].answers[3]
+
+});
+
