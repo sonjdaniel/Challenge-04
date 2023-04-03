@@ -1,28 +1,28 @@
 // querySelector method to target different headings
-var startb = document.querySelector("#start");
+var startButton = document.querySelector("#start_button");
 var timer = document.querySelector(".timer");
-var questionAsk = document.querySelector(".question");
-var answerButtons = document.querySelector("#answer_Button");
-var answerButton1 = document.querySelector("#answer1");
-var answerButton2 = document.querySelector("#answer2");
-var answerButton3 = document.querySelector("#answer3");
-var answerButton4 = document.querySelector("#answer4");
-var countdown = document.querySelector(".countdown");
-var instruction = document.querySelector(".instuction");
-var currentQuestion = 0;
-var timeLeft = 60;
-var resultPage = document.querySelector("#result_page");
+var countdown = document.querySelector(".timer_count");
+var question = document.querySelector(".question");
+var answerbuttons = document.querySelector("#answer_buttons");
+var quiz = document.querySelector(".instruction");
+var answerButton1 = document.querySelector(".answer_button_1");
+var answerButton2 = document.querySelector(".answer_button_2");
+var answerButton3 = document.querySelector(".answer_button_3");
+var answerButton4 = document.querySelector(".answer_button_4");
+var comment = document.createElement("h2");
+var resultPage = document.querySelector("#result");
 var score = document.querySelector(".score");
+var submitButton = document.querySelector("#submit_button");
 var input = document.querySelector("input");
 var output = document.querySelector("#output");
 var finalPage = document.querySelector("#final_page");
 var highScoresPage = document.querySelector(".result");
 var replay_button = document.querySelector("#replay");
+var h2 = document.createElement("h2");
 var finalScore;
 var initials;
+var currentQuestion = 0;
 var highScores = JSON.parse(localStorage.getItem("userInput")) || [];
-var h2 = document.createElement("h2");
-var comment = document.createElement("h2");
 
 
 // Questions to ask?
@@ -62,24 +62,9 @@ var clearTimer
 
 function endTimer() {
     clearInterval(clearTimer)
+
 }
-
-// listen to the answer click
-
-startb.addEventListener("click", function () {
-  questionAsk.textContent = questions[currentQuestion].question;
-  answerButton1.innerHTML = questions[currentQuestion].answers[0];
-  answerButton2.innerHTML = questions[currentQuestion].answers[1];
-  answerButton3.innerHTML = questions[currentQuestion].answers[2];
-  answerButton4.innerHTML = questions[currentQuestion].answers[3];
-  instruction.style = "display: none";
-  startb.style = "display: none";
-  answerButtons.style = "display: flex";
-
-  clearTimer = setInterval(setTime, 1000)
-});
-
-// Timer
+//  timer
 function setTime() {
     timeLeft--;
     countdown.textContent = timeLeft;
@@ -91,33 +76,52 @@ function setTime() {
         scorePage();
     }
 }
-// user answer with if else
-answerButtons.addEventListener("click", function (event) {
-  var userChoice = event.target;
-  console.log("Selection: " + userChoice.innerHTML);
 
-  var userAnswer = userChoice.innerHTML;
+// listen to the answer click
 
-  if (currentQuestion === 4) {
-    endTimer();
-    return scorePage();
-  } else if (userAnswer !== questions[currentQuestion].correctAnswer) {
-    timeLeft -= 10;
-    comment.textContent = "Wrong!";
-    answerButtons.append(comment);
-  } else {
-    comment.textContent = "Correct";
-    answerButtons.append(comment);
-  }
+startButton.addEventListener("click", function () {
+    question.textContent = questions[currentQuestion].question;
+    answerButton1.innerHTML = questions[currentQuestion].answers[0]
+    answerButton2.innerHTML = questions[currentQuestion].answers[1]
+    answerButton3.innerHTML = questions[currentQuestion].answers[2]
+    answerButton4.innerHTML = questions[currentQuestion].answers[3]
+    quiz.style = "display: none";
+    startButton.style = "display: none";
+    answerbuttons.style.display = "flex";
 
-  currentQuestion += 1;
-
-  question.textContent = questions[currentQuestion].question;
-  answerButton1.innerHTML = questions[currentQuestion].answers[0];
-  answerButton2.innerHTML = questions[currentQuestion].answers[1];
-  answerButton3.innerHTML = questions[currentQuestion].answers[2];
-  answerButton4.innerHTML = questions[currentQuestion].answers[3];
+    clearTimer = setInterval(setTime, 1000)
 });
+
+// user answer with if else
+answerbuttons.addEventListener("click", function (event) {
+
+    var userChoice = event.target;
+    console.log("Selection: " + userChoice.innerHTML);
+
+    var userAnswer = userChoice.innerHTML;
+
+    if (currentQuestion === 4) {
+        endTimer();
+        return scorePage();
+
+    } else if (userAnswer !== questions[currentQuestion].correctAnswer) {
+        timeLeft -= 10;
+        comment.textContent = "Wrong!";
+        answerbuttons.append(comment);
+    } else {
+        comment.textContent = "Correct";
+        answerbuttons.append(comment);
+    }
+
+    currentQuestion += 1;
+
+    question.textContent = questions[currentQuestion].question;
+    answerButton1.innerHTML = questions[currentQuestion].answers[0]
+    answerButton2.innerHTML = questions[currentQuestion].answers[1]
+    answerButton3.innerHTML = questions[currentQuestion].answers[2]
+    answerButton4.innerHTML = questions[currentQuestion].answers[3]
+
+})
 
 
 // Score page
@@ -143,26 +147,26 @@ function scorePage() {
     }
    
     // Final page
-    function showFinalPage() {
-    
-    
-        resultPage.style.display = "none";
-        timer.style.display = "none";
-        finalPage.style.display = "block";
-    
-        output.innerHTML = "";
-    
-        for (var i = 0; i < highScores.length; i++) {
-            var highScore = highScores[i];
-            var li = document.createElement("li");
-            li.textContent = highScore.initials + " - " + highScore.score;
-            console.log(highScore);
-            li.setAttribute("data-index", i);
-            output.appendChild(li);
-        }
-    
-        console.log(highScores);
+function showFinalPage() {
+
+
+    resultPage.style.display = "none";
+    timer.style.display = "none";
+    finalPage.style.display = "block";
+
+    output.innerHTML = "";
+
+    for (var i = 0; i < highScores.length; i++) {
+        var highScore = highScores[i];
+        var li = document.createElement("li");
+        li.textContent = highScore.initials + " - " + highScore.score;
+        console.log(highScore);
+        li.setAttribute("data-index", i);
+        output.appendChild(li);
     }
+
+    console.log(highScores);
+}
     
     
     submitButton.addEventListener("click", function (event) {
@@ -184,8 +188,8 @@ function scorePage() {
     highScoresPage.addEventListener("click", function (event) {
     
         question.style.display = "none";
-        instruction.style.display = "none";
-        startb.style.display = "none";
+        quiz.style.display = "none";
+        startButton.style.display = "none";
         resultPage.style.display = "none";
         timer.style.display = "none";
         finalPage.style.display = "none";
@@ -202,9 +206,9 @@ replay_button.addEventListener("click", rePlay)
 function rePlay() {
     question.style.display = "block";
     question.innerHTML = "Coding Quiz Challenge";
-    instruction.style.display = "flex";
-    instruction.classList.add("center_text");
-    startb.style.display = "block";
+    quiz.style.display = "flex";
+    quiz.classList.add("center_text");
+    startButton.style.display = "block";
     timer.style.display = "flex";
     countdown.innerHTML = "60";
     finalPage.style.display = "none";

@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./Assets/style.css">
-    <title>Quiz</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Code Quiz</title>
 </head>
-<body>
-    <!-- add header for high score, time, button-->
 
+<body>
     <header>
         <div class="result">
-            <h3 id="compare_result">View high scores</h3>
+            <h3 id="compare_results">View high scores</h3>
         </div>
         <div class="timer">
-            <!-- need to fix the look -->
             <h3>Time:</h3>
-            <div class="countdown">60</div>
+            <div class="timer_count">60</div>
         </div>
     </header>
 
-
     <main>
-
-        <div>
-            <h1 class="question">Quiz Challenge</h1>
+        <div class="center_text">
+            <h1 class="question">Coding Quiz Challenge</h1>
         </div>
-        <div class="instuction">
-            <p>Try to answer the following questions within the time limit. Keep in mind that incorrect
+        <div class="instruction">
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                 answers will penalize your score/time by ten seconds!</p>
         </div>
-        <div>
-            <button id="start">Start</button>
+        <div class="center_text">
+            <button id="start_button">Start</button>
         </div>
-        <div>
-            
-            <ul id="answer_Button">
-                <li><button id="answer1"></button></li>
-                <li><button id="answer2"></button></li>
-                <li><button id="answer3"></button></li>
-                <li><button id="answer4"></button></li>
-                </ul>
+        <div class="center_text">
+            <div id="answer_buttons">
+                <button class="answer_button_1"></button>
+                <button class="answer_button_2"></button>
+                <button class="answer_button_3"></button>
+                <button class="answer_button_4"></button>
+            </div>
         </div>
-        <div id="result_page">
-        <h2>All Done!</h2>
-        <h2 class="score">Final Score</h2>
-        <p>
-            <label>Enter Initials:</label>
-            <input id="initials" type="text">
-        </p>
-        <button id="submit_button">Sumbit</button>
+        <div id="result">
+            <h1>All done!</h1>
+            <h2 class="score">Final score</h2>
+            <p>
+                <label>Enter initials:</label>
+                <input id="initials" type="text" />
+            </p>
+            <button id="submit_button">Submit</button>
         </div>
         <div id="final_page">
             <h1>High Scores!</h1>
@@ -60,8 +56,10 @@
 
 
     </main>
-    
 
-    <script src="./Assets/script.js"></script>
+
+    <script src="./assets/script.js"></script>
+
 </body>
+
 </html>
