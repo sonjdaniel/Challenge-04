@@ -55,3 +55,21 @@ button{
     margin-bottom: 20px;
     font-size: 20px;
 }
+
+#result_page{
+    display:none;
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+#final_page {
+    display:none;
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+}
