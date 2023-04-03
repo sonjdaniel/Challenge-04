@@ -23,6 +23,7 @@ var finalScore;
 var initials;
 var currentQuestion = 0;
 var highScores = JSON.parse(localStorage.getItem("userInput")) || [];
+var clearScores = document.querySelector("#clearBtn");
 
 
 // Questions to ask?
@@ -124,7 +125,7 @@ answerbuttons.addEventListener("click", function (event) {
 })
 
 
-// Score page
+// Score page with css
 function scorePage() {
         finalScore = timeLeft;
     
@@ -146,7 +147,7 @@ function scorePage() {
     
     }
    
-    // Final page
+    // Final page for score
 function showFinalPage() {
 
 
@@ -168,7 +169,7 @@ function showFinalPage() {
     console.log(highScores);
 }
     
-    
+// listen to sumbit button 
     submitButton.addEventListener("click", function (event) {
     
         event.preventDefault();
@@ -184,7 +185,8 @@ function showFinalPage() {
             showFinalPage();
         }
     })
-    
+
+// change the settings when click on score
     highScoresPage.addEventListener("click", function (event) {
     
         question.style.display = "none";
@@ -217,3 +219,12 @@ function rePlay() {
     input.value = "";
 
 }
+
+//clear scores
+
+clearScores.addEventListener("click", function(){
+    if (confirm("Are you sure you want to clear the high scores?")) {
+      localStorage.clear();
+      location.reload();
+    }
+});
