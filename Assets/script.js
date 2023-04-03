@@ -16,12 +16,13 @@ var score = document.querySelector(".score");
 var input = document.querySelector("input");
 var output = document.querySelector("#output");
 var finalPage = document.querySelector("#final_page");
-var highScoresPage = document.querySelector(".score_result");
+var highScoresPage = document.querySelector(".result");
 var replay_button = document.querySelector("#replay");
 var finalScore;
 var initials;
 var highScores = JSON.parse(localStorage.getItem("userInput")) || [];
 var h2 = document.createElement("h2");
+var comment = document.createElement("h2");
 
 
 // Questions to ask?
@@ -56,6 +57,13 @@ var questions = [
 
 ];
 
+// clear timer
+var clearTimer
+
+function endTimer() {
+    clearInterval(clearTimer)
+}
+
 // listen to the answer click
 
 startb.addEventListener("click", function () {
@@ -67,26 +75,21 @@ startb.addEventListener("click", function () {
   instruction.style = "display: none";
   startb.style = "display: none";
   answerButtons.style = "display: flex";
-  answerButtons.style = "visibility: visible";
+
+  clearTimer = setInterval(setTime, 1000)
 });
 
 // Timer
-function countDown() {
-  count = 60;
-  let interval = setInterval(counting, 1000);
-  function counting() {
-    count--;
-    countdown.textContent = count;
-    //Goes to the first page/function after 1 second
-    //Allows both the countdown to start and the first question
-    if (countdown.textContent == 59) {
-      startQuiz();
+function setTime() {
+    timeLeft--;
+    countdown.textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+        timeLeft = 0;
+        countdown.textContent = timeLeft;
+        endTimer();
+        scorePage();
     }
-    //if time runs out and the count gets to zero, it calls the scorePage function to end the quiz
-    if (count === 0) {
-      clearInterval(interval);
-    }
-  }
 }
 // user answer with if else
 answerButtons.addEventListener("click", function (event) {
@@ -116,11 +119,6 @@ answerButtons.addEventListener("click", function (event) {
   answerButton4.innerHTML = questions[currentQuestion].answers[3];
 });
 
-question.style.display = "none";
-answerbuttons.style.display = "none";
-resultPage.style.display = "block";
-
-score.textContent = "Your final score is " + finalScore + ".";
 
 // Score page
 function scorePage() {
@@ -186,8 +184,8 @@ function scorePage() {
     highScoresPage.addEventListener("click", function (event) {
     
         question.style.display = "none";
-        quiz.style.display = "none";
-        startButton.style.display = "none";
+        instruction.style.display = "none";
+        startb.style.display = "none";
         resultPage.style.display = "none";
         timer.style.display = "none";
         finalPage.style.display = "none";
@@ -204,9 +202,9 @@ replay_button.addEventListener("click", rePlay)
 function rePlay() {
     question.style.display = "block";
     question.innerHTML = "Coding Quiz Challenge";
-    quiz.style.display = "flex";
-    quiz.classList.add("center_text");
-    startButton.style.display = "block";
+    instruction.style.display = "flex";
+    instruction.classList.add("center_text");
+    startb.style.display = "block";
     timer.style.display = "flex";
     countdown.innerHTML = "60";
     finalPage.style.display = "none";

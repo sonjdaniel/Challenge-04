@@ -46,9 +46,10 @@ li{
     visibility: hidden;
 }
 
-.result {
+.result:hover {
     color: blue;
     display: flex;
+    cursor: pointer;
 }
 
 button{
@@ -56,7 +57,7 @@ button{
     font-size: 20px;
 }
 
-#result_page{
+#result_page {
     display:none;
     margin: auto;
     width: 50%;
@@ -64,6 +65,7 @@ button{
     padding: 10px;
     text-align: center;
 }
+
 
 #final_page {
     display:none;
@@ -72,4 +74,20 @@ button{
     border: 3px solid black;
     padding: 10px;
     text-align: center;
+}
+
+ul{
+    display: none;
+}
+
+.submit_button {
+    padding: 10px;
+    margin: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 10%;
+    width: 100px;
+    height: 50px;
+    background-color: blueviolet;
+    color: white;
 }
