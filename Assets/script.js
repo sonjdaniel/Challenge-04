@@ -21,7 +21,7 @@ var replay_button = document.querySelector("#replay");
 var finalScore;
 var initials;
 var highScores = JSON.parse(localStorage.getItem("userInput")) || [];
-
+var h2 = document.createElement("h2");
 
 
 // Questions to ask?
