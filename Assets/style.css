@@ -43,5 +43,15 @@ li{
     width: 20%;
     height: 20%;
     padding-right: 3%;
-    visibility: visible;
+    visibility: hidden;
+}
+
+.result {
+    color: blue;
+    display: flex;
+}
+
+button{
+    margin-bottom: 20px;
+    font-size: 20px;
 }

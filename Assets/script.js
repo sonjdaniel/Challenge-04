@@ -60,7 +60,7 @@ function countDown() {
         }
     }
 };
-// user answer questions
+// user answer with if else
 answerButtons.addEventListener("click", function (event) {
 
     var userChoice = event.target;
