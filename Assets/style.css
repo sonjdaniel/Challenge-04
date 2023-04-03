@@ -44,7 +44,6 @@ p {
     width: 150px;
     flex-direction: column;
     display:none
-
 }
 
 #result {
@@ -54,6 +53,7 @@ p {
     padding: 10px;
     text-align: center;
     display:none;
+    
 }
 
 #submit_button, #clearBtn, #replay {
@@ -74,6 +74,8 @@ p {
 }
 
 button {
+    background-color: blueviolet;
+    color: white;
     margin-bottom: 20px;
     font-size: 20px; 
 }

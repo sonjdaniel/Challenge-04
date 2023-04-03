@@ -122,6 +122,8 @@ answerbuttons.addEventListener("click", function (event) {
     answerButton3.innerHTML = questions[currentQuestion].answers[2]
     answerButton4.innerHTML = questions[currentQuestion].answers[3]
 
+
+    
 })
 
 
